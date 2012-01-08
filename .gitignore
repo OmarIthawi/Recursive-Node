@@ -1,0 +1,6 @@
+# ignore all client generated dirs
+slaves/*
+
+# except for 99, which is the default folder
+!slaves/99
+

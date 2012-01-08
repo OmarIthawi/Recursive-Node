@@ -1,0 +1,26 @@
+<!-- This is the default file. Edit and Save -->
+<h3>Socket.io Chat</h3>
+<form id="form" action="#">
+    <input type="text" id="txt" name="txt" />
+    <input type="submit" value="Send" />
+</form>
+<div id="chat">
+</div>
+
+<script type="text/javascript" 
+    src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+var socket = io.connect('/');
+socket.on('message', function (data) {
+    $('#chat').prepend('<p>' + data + '</p>');
+});
+
+$('#form').submit(function(){
+    socket.emit('message', $('#txt').val());
+    $('#chat').prepend('<p><b>Me</b>:' + $('#txt').val() + '</p>');
+    $('#txt').val('');
+    return false;
+});
+</script>
+
